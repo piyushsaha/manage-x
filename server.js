@@ -19,7 +19,7 @@ const DB_NAME = process.env.DB_NAME
 const mongo_URI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.lvmo4.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
 // Connecting to cloud database and then start listening to requests
-mongoose.connect(mongo_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(mongo_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false})
     .then(() => app.listen(PORT, () => console.log(`Connected to DB\nRunning on port : ${PORT}`)))
     .catch(err => console.log(err))
 

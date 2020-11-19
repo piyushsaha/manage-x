@@ -21,10 +21,45 @@ router.route('/')
             .then(item => {
                 res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json')
-                res.json(item)
+                res.json({ success: true })
             })
             .catch(err => {
                 res.send(err)
+            })
+    })
+
+router.route('/:id')
+    .get((req, res) => {
+        Item.findById(req.params.id)
+            .then(item => {
+                res.statusCode = 200
+                res.setHeader('Content-Type', 'application/json')
+                res.json(item)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
+    .put((req, res) => {
+        Item.findByIdAndUpdate(req.params.id, req.body)
+            .then(item => {
+                res.statusCode = 200
+                res.setHeader('Content-Type', 'application/json')
+                res.json({ success: true })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
+    .delete((req, res) => {
+        Item.findByIdAndRemove(req.params.id)
+            .then(result => {
+                res.statusCode = 200
+                res.setHeader('Content-Type', 'application/json')
+                res.json({ success: true })
+            })
+            .catch(err => {
+                console.log(err)
             })
     })
 

@@ -11,8 +11,8 @@ const API = {
     getStock: function(id) {
         return axios.get('/api/items/' + id)
     },
-    updateStock: function(id, stock) {
-        return axios.put('/api/items/' + id, stock)
+    updateItem: function(id, updatedItem) {
+        return axios.put('/api/items/' + id, updatedItem)
     },
     deleteStock: function(id) {
         return axios.delete('/api/items/' + id)

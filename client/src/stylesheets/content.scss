@@ -3,10 +3,39 @@ $primary : #2D2434;
 
 .content {
     padding: 20px 30px;
+    width: 100%;
     h1 {
         font-family: 'Varela Round', sans-serif;
         span {
+            font-weight: bold;
             color: $primary;
         }
+    }
+    table {
+        margin-top: 40px;
+        width: 100%;
+
+        th {
+            background-color: $primary;
+            color: white;
+            font-weight: normal;
+            padding: 5px 5px;
+        }
+        .name-col {
+            width: 30%;
+        }
+        .quantity-col, .price-col, .lastupdated-col, update-col {
+            width: 15%;
+        }
+        .delete-col {
+            width: 10%;
+        }
+        td {
+            padding: 5px 5px;
+            border-bottom: black 1px solid;
+        }
+    }
+    .error {
+        color: red;
     }
 }

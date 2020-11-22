@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+$primary : #2D2434;
+
 body {
     margin: 0;
     padding: 0;
@@ -10,4 +12,11 @@ body {
 #root {
     display: flex;
     flex-direction: row;
+}
+
+.do-btn {
+    background-color: $primary;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
 }

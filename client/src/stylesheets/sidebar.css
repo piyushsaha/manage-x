@@ -13,7 +13,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #2D2434;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
   min-width: 12vw;
 }

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 .content {
   padding: 20px 30px;
+  width: 100%;
 }
 
 .content h1 {
@@ -8,5 +9,39 @@
 }
 
 .content h1 span {
+  font-weight: bold;
   color: #2D2434;
+}
+
+.content table {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.content table th {
+  background-color: #2D2434;
+  color: white;
+  font-weight: normal;
+  padding: 5px 5px;
+}
+
+.content table .name-col {
+  width: 30%;
+}
+
+.content table .quantity-col, .content table .price-col, .content table .lastupdated-col, .content table update-col {
+  width: 15%;
+}
+
+.content table .delete-col {
+  width: 10%;
+}
+
+.content table td {
+  padding: 5px 5px;
+  border-bottom: black 1px solid;
+}
+
+.content .error {
+  color: red;
 }

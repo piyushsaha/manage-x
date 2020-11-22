@@ -17,3 +17,10 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
 }
+
+.do-btn {
+  background-color: #2D2434;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}

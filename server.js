@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const itemRouter = require('./routes/itemRoutes')
+
+// Load environment variables
 require('dotenv').config()
 
 const app = express()
@@ -20,10 +22,14 @@ const DB_PASSWORD = process.env.DB_PASSWORD
 const DB_NAME = process.env.DB_NAME
 const mongo_URI = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.lvmo4.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
-// Connecting to cloud database and then start listening to requests
+// Listening to requests
+app.listen(PORT, () => console.log(`Running on port : ${PORT}`))
+
+// Connecting to cloud database
 mongoose.connect(mongo_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false})
-    .then(() => app.listen(PORT, () => console.log(`Connected to DB\nRunning on port : ${PORT}`)))
+    .then(() => console.log(`Connected to DB`))
     .catch(err => console.log(err))
+
 
 // Route handlers
 app.use('/api/items', itemRouter)

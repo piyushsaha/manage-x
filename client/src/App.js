@@ -81,7 +81,7 @@ class App extends React.Component {
                 <Modal isOpen={this.state.isNewItemModalOpen} toggle={this.handleNewItemModal}>
                     <ModalHeader toggle={this.handleNewItemModal}>Add New Item</ModalHeader>
                     <ModalBody>
-                        <form className="new-item-form">
+                        <form className="new-item-form" onSubmit={this.submitNewItem}>
                             <label htmlFor="item_name">Item Name : &nbsp;</label>
                             <input
                                 type="text"
@@ -112,7 +112,7 @@ class App extends React.Component {
                             <br />
                             <br />
 
-                            <button className="do-btn" onClick={this.submitNewItem}>Add Item</button>
+                            <button className="do-btn" onSubmit={this.submitNewItem}>Add Item</button>
                         </form>
                     </ModalBody>
                 </Modal>

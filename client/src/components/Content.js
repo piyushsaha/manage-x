@@ -155,7 +155,7 @@ class Content extends React.Component {
                             />
                             <br />
 
-                        <button className="do-btn" onClick={this.updatePrice}>Update Item's Price</button>
+                        <button className="do-btn" onSubmit={this.updatePrice}>Update Item's Price</button>
                         </form>
                     </ModalBody>
                 </Modal>
@@ -164,7 +164,7 @@ class Content extends React.Component {
                 <Modal isOpen={this.state.quantityUpdateModal} toggle={this.handleUpdateQuantityModal}>
                     <ModalHeader toggle={this.handleUpdateQuantityModal}>Update Quantity</ModalHeader>
                     <ModalBody>
-                        <form method="post">
+                        <form onSubmit={this.updateQuantity}>
                             <label htmlFor="newQuantity">New Quantity :&nbsp;</label>
                             <input
                                 type="text"
@@ -173,7 +173,7 @@ class Content extends React.Component {
                                 onChange={this.handleInputField}
                             />
                             <br />
-                            <button className="do-btn" onClick={this.updateQuantity}>Update Item's Quantity</button>
+                            <button className="do-btn" onSubmit={this.updateQuantity}>Update Item's Quantity</button>
                         </form>
                     </ModalBody>
                 </Modal>

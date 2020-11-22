@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require('path')
 
 const itemRouter = require('./routes/itemRoutes')
 
@@ -33,3 +34,13 @@ mongoose.connect(mongo_URI, {useNewUrlParser: true, useUnifiedTopology: true, us
 
 // Route handlers
 app.use('/api/items', itemRouter)
+
+// If the app is deployed
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+
+    // Serving the index page of bundled React frontend
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}

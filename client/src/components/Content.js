@@ -143,10 +143,10 @@ class Content extends React.Component {
 
                 {/* Update Price Modal */}
                 <Modal isOpen={this.state.priceUpdateModal} toggle={this.handleUpdatePriceModal}>
-                    <ModalHeader toggle={this.handleUpdatePriceModal}>Update Price  :&nbsp;</ModalHeader>
+                    <ModalHeader toggle={this.handleUpdatePriceModal}>Update Price</ModalHeader>
                     <ModalBody>
-                        <form method="post">
-                            <label htmlFor="newPrice">New Price</label>
+                        <form onSubmit={this.updatePrice}>
+                            <label htmlFor="newPrice">New Price : &nbsp;</label>
                             <input
                                 type="text"
                                 id="newPrice"
@@ -155,11 +155,9 @@ class Content extends React.Component {
                             />
                             <br />
 
+                        <button className="do-btn" onClick={this.updatePrice}>Update Item's Price</button>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <button className="do-btn" onClick={this.updatePrice}>Update Item's Price</button>
-                    </ModalFooter>
                 </Modal>
 
                 {/* Update Quantity Modal */}
@@ -175,12 +173,9 @@ class Content extends React.Component {
                                 onChange={this.handleInputField}
                             />
                             <br />
-
+                            <button className="do-btn" onClick={this.updateQuantity}>Update Item's Quantity</button>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <button className="do-btn" onClick={this.updateQuantity}>Update Item's Quantity</button>
-                    </ModalFooter>
                 </Modal>
 
                 {/* Comfirm Delete Modal */}

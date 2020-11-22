@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 import API from './util/API'
 
@@ -81,7 +81,7 @@ class App extends React.Component {
                 <Modal isOpen={this.state.isNewItemModalOpen} toggle={this.handleNewItemModal}>
                     <ModalHeader toggle={this.handleNewItemModal}>Add New Item</ModalHeader>
                     <ModalBody>
-                        <form className="new-item-form" method="post">
+                        <form className="new-item-form">
                             <label htmlFor="item_name">Item Name : &nbsp;</label>
                             <input
                                 type="text"
@@ -108,11 +108,10 @@ class App extends React.Component {
                                 onChange={this.handleInputField}
                             />
                             <br />
+
+                            <button className="do-btn" onClick={this.submitNewItem}>Add Item</button>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <button className="do-btn" onClick={this.submitNewItem}>Add Item</button>
-                    </ModalFooter>
                 </Modal>
             </>
         )

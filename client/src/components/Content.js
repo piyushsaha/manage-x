@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
+import { Modal, ModalBody, ModalHeader, ModalFooter, Spinner } from 'reactstrap'
 
 import API from '../util/API'
 
@@ -90,22 +90,33 @@ class Content extends React.Component {
                 totalStock += this.props.items[i].quantity
             }
         }
+        var items
+        // If the items are fetched from database 
+        if (this.props.items) {
 
-        const items = this.props.items ?
-            this.props.items.map(item => {
-                return (
-                    <tr key={item._id}>
-                        <td>{item.item_name}</td>
-                        <td>{item.quantity}</td>
-                        <td><button onClick={() => this.handleUpdateQuantityModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Quantity </button></td>
-                        <td>{item.price}</td>
-                        <td><button onClick={() => this.handleUpdatePriceModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Price </button></td>
-                        <td><button onClick={() => this.handleDeleteItemModal(item._id)}> <i className="fa fa-trash fa-lg"></i></button></td>
-                    </tr>
-                )
-            })
-            :
-            <p>Loading...</p>
+            // If items exist
+            if (this.props.items.length) {
+                items = this.props.items.map(item => {
+                    return (
+                        <tr key={item._id}>
+                            <td>{item.item_name}</td>
+                            <td>{item.quantity}</td>
+                            <td><button onClick={() => this.handleUpdateQuantityModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Quantity </button></td>
+                            <td>{item.price}</td>
+                            <td><button onClick={() => this.handleUpdatePriceModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Price </button></td>
+                            <td><button onClick={() => this.handleDeleteItemModal(item._id)}> <i className="fa fa-trash fa-lg"></i></button></td>
+                        </tr>
+                    )
+                })
+            }
+            // If there are no items 
+            else {
+                items = <h5 className="mt-5">No Item Present</h5>
+            }
+        }
+        else {
+            items = <Spinner className="mt-5" />
+        }
 
         var error = this.props.error ? <span className="error">{this.props.error}</span> : null
 
@@ -113,7 +124,7 @@ class Content extends React.Component {
             <div className="content">
                 <h1>Manage<span>X</span></h1>
                 <br />
-                <h5>Total Items : {this.props.items ? this.props.items.length : <span>Loading...</span>}</h5>
+                <h5>Total Items : {this.props.items ? this.props.items.length : <Spinner size="sm" />}</h5>
                 <h5>Total Stock : <span>{totalStock}</span> </h5>
                 {error}
                 <table className="data-table">

@@ -73,6 +73,7 @@ class App extends React.Component {
                 <Content
                     items={this.state.items}
                     error={this.state.error}
+                    loadData={this.loadData}
                 />
 
                 {/* New Item Modal */}

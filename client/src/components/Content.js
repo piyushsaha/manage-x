@@ -15,10 +15,12 @@ class Content extends React.Component {
         this.state = {
             priceUpdateModal: false,
             newPrice: "",
+            currentPriceUpdateID: null,
             quantityUpdateModal: false,
             newQuantity: "",
             currentQuantityUpdateID: null,
-            currentPriceUpdateID: null
+            deleteItemModal: false,
+            currentDeleteID: null
         }
         this.updatePrice = this.updatePrice.bind(this)
         this.handleUpdatePriceModal = this.handleUpdatePriceModal.bind(this)
@@ -33,7 +35,8 @@ class Content extends React.Component {
             .then(response => console.log(response))
         await this.setState({ currentPriceUpdateID: null, newPrice: null })
         await this.props.loadData()
-        this.handleUpdatePriceModal()
+        await this.handleUpdatePriceModal()
+        this.props.loadData()
     }
     handleUpdatePriceModal = (id) => {
         this.setState({
@@ -48,7 +51,8 @@ class Content extends React.Component {
             .then(response => console.log(response))
         await this.setState({ currentQuantityUpdateID: null, newQuantity: null })
         await this.props.loadData()
-        this.handleUpdateQuantityModal()
+        await this.handleUpdateQuantityModal()
+        this.props.loadData()
     }
     handleUpdateQuantityModal = (id) => {
         this.setState({
@@ -56,11 +60,22 @@ class Content extends React.Component {
             currentQuantityUpdateID: id
         })
     }
-    // handleUpdatePriceModal = () => {
-    //     this.setState({
-    //         priceUpdateModal: !this.state.priceUpdateModal
-    //     })
-    // }
+
+    handleDeleteItemModal = (id) => {
+        this.setState({
+            deleteItemModal: !this.state.deleteItemModal,
+            currentDeleteID: id
+        })
+    }
+    deleteItem = async () => {
+        API.deleteStock(this.state.currentDeleteID)
+            .then(response => console.log(response))
+        await this.setState({ currentDeleteID: null })
+        await this.props.loadData()
+        await this.handleDeleteItemModal()
+        this.props.loadData()
+    }
+
     handleInputField = (event) => {
         this.setState({
             [event.target.id]: event.target.value
@@ -85,7 +100,7 @@ class Content extends React.Component {
                         <td><button onClick={() => this.handleUpdateQuantityModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Quantity </button></td>
                         <td>{item.price}</td>
                         <td><button onClick={() => this.handleUpdatePriceModal(item._id)}> <i className="fa fa-edit fa-lg"></i> Price </button></td>
-                        <td>Delete</td>
+                        <td><button onClick={() => this.handleDeleteItemModal(item._id)}> <i className="fa fa-trash fa-lg"></i></button></td>
                     </tr>
                 )
             })
@@ -105,7 +120,7 @@ class Content extends React.Component {
                     <tr>
                         <th className="name-col">Item Name</th>
                         <th className="quantity-col">Quantity</th>
-                        <th className="update-col">Update Stocks</th>
+                        <th className="update-col">Update Quantity</th>
                         <th className="price-col">Price</th>
                         <th className="lastupdated-col">Update Price</th>
                         <th className="delete-col">Delete Item</th>
@@ -154,6 +169,19 @@ class Content extends React.Component {
                     </ModalBody>
                     <ModalFooter>
                         <button className="do-btn" onClick={this.updateQuantity}>Update Item's Quantity</button>
+                    </ModalFooter>
+                </Modal>
+
+                {/* Comfirm Delete Modal */}
+                <Modal isOpen={this.state.deleteItemModal} toggle={this.handleDeleteItemModal}>
+                    <ModalHeader toggle={this.handleDeleteItemModal}>Update Quantity</ModalHeader>
+                    <ModalBody>
+                        <h6>Are you sure want to delete this item?</h6>
+                    </ModalBody>
+                    <ModalFooter>
+                        <button className="do-btn" onClick={this.deleteItem}>Delete Item</button>
+                        &nbsp; &nbsp;
+                        <div className="secondary btn" onClick={this.handleDeleteItemModal}>Cancel</div>
                     </ModalFooter>
                 </Modal>
             </div>

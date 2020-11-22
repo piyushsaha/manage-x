@@ -61,7 +61,8 @@ class App extends React.Component {
             .catch(err => console.log(err))
         await this.setState({item_name: "", price: "", quantity: "", error: null})
         await this.loadData()        
-        this.handleNewItemModal()
+        await this.handleNewItemModal()
+        this.loadData()
     }
 
     render() {

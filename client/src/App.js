@@ -80,8 +80,8 @@ class App extends React.Component {
                 <Modal isOpen={this.state.isNewItemModalOpen} toggle={this.handleNewItemModal}>
                     <ModalHeader toggle={this.handleNewItemModal}>Add New Item</ModalHeader>
                     <ModalBody>
-                        <form method="post">
-                            <label htmlFor="item_name">Item Name</label>
+                        <form className="new-item-form" method="post">
+                            <label htmlFor="item_name">Item Name : &nbsp;</label>
                             <input
                                 type="text"
                                 id="item_name"
@@ -90,7 +90,7 @@ class App extends React.Component {
                             />
                             <br />
 
-                            <label htmlFor="price">Price</label>
+                            <label htmlFor="price">Price : &nbsp;</label>
                             <input
                                 type="text"
                                 id="price"
@@ -99,7 +99,7 @@ class App extends React.Component {
                             />
                             <br />
 
-                            <label htmlFor="quantity">Quantity</label>
+                            <label htmlFor="quantity">Quantity : &nbsp;</label>
                             <input
                                 type="text"
                                 id="quantity"

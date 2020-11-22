@@ -24,3 +24,7 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+
+.new-item-form > input {
+  width: 100%;
+}

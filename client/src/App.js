@@ -51,16 +51,16 @@ class App extends React.Component {
         })
     }
     submitNewItem = async () => {
-        const newItem = { item_name: this.state.item_name, price: this.state.price, quantity: this.state.quantity}
+        const newItem = { item_name: this.state.item_name, price: this.state.price, quantity: this.state.quantity }
         API.createItem(newItem)
             .then(res => {
-                if(res.data.code === 11000) {
-                    this.setState({ error: 'The item already exists!' }) 
+                if (res.data.code === 11000) {
+                    this.setState({ error: 'The item already exists!' })
                 }
             })
             .catch(err => console.log(err))
-        await this.setState({item_name: "", price: "", quantity: "", error: null})
-        await this.loadData()        
+        await this.setState({ item_name: "", price: "", quantity: "", error: null })
+        await this.loadData()
         await this.handleNewItemModal()
         this.loadData()
     }
@@ -90,6 +90,7 @@ class App extends React.Component {
                                 onChange={this.handleInputField}
                             />
                             <br />
+                            <br />
 
                             <label htmlFor="price">Price : &nbsp;</label>
                             <input
@@ -99,6 +100,7 @@ class App extends React.Component {
                                 onChange={this.handleInputField}
                             />
                             <br />
+                            <br />
 
                             <label htmlFor="quantity">Quantity : &nbsp;</label>
                             <input
@@ -107,6 +109,7 @@ class App extends React.Component {
                                 value={this.state.quantity}
                                 onChange={this.handleInputField}
                             />
+                            <br />
                             <br />
 
                             <button className="do-btn" onClick={this.submitNewItem}>Add Item</button>
